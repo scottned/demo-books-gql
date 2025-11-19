@@ -1,6 +1,9 @@
-import { ApolloProvider } from '@apollo/client';
-import { client } from './apollo-client';
-import BooksGrid from './components/BooksGrid';
+import React from "react";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "./apollo-client";
+import BooksGrid from "./components/BooksGrid";
+
+import "./index.css";
 
 function App() {
   return (
@@ -20,5 +23,3 @@ function App() {
 }
 
 export default App;
-
-
