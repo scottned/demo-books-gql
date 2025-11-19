@@ -1,22 +1,18 @@
 {
-  "name": "graphql-demo",
-  "module": "index.ts",
-  "type": "module",
+  "name": "graphql-demo-monorepo",
+  "version": "1.0.0",
   "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "start": "bun run index.ts",
-    "test": "bun run test-queries.ts"
+    "start:srv": "bun --cwd packages/books-srv start",
+    "start:cli": "bun --cwd packages/books-cli dev",
+    "dev": "bun run start:srv & bun run start:cli"
   },
   "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
+    "@types/bun": "latest",
     "typescript": "^5"
-  },
-  "dependencies": {
-    "@apollo/server": "^5.1.0",
-    "dataloader": "^2.2.3",
-    "graphql": "^16.12.0",
-    "graphql-tag": "^2.12.6"
   }
 }

@@ -1,4 +1,41 @@
-# GraphQL Demo - Book & Author Service
+# GraphQL Demo - Monorepo
+
+This monorepo contains:
+- **books-srv**: GraphQL server demonstrating solutions to common GraphQL problems
+- **books-cli**: React client application using Apollo Client to display books
+
+## Monorepo Structure
+
+```
+packages/
+  ├── books-srv/    # GraphQL server (Apollo Server)
+  └── books-cli/    # React client (Apollo Client + Tailwind)
+```
+
+## Quick Start
+
+Install dependencies:
+```bash
+bun install
+```
+
+Run both server and client:
+```bash
+bun run dev
+```
+
+Or run individually:
+```bash
+# Start GraphQL server (port 4000)
+bun run start:srv
+
+# Start React client (port 3000)
+bun run start:cli
+```
+
+---
+
+# books-srv - GraphQL Server
 
 This GraphQL service demonstrates solutions to common GraphQL problems, specifically:
 
@@ -58,8 +95,15 @@ This pattern:
 
 ## Running the Server
 
+From the monorepo root:
 ```bash
-bun run index.ts
+bun run start:srv
+```
+
+Or from the package directory:
+```bash
+cd packages/books-srv
+bun run start
 ```
 
 The server will start at `http://localhost:4000`
@@ -157,13 +201,62 @@ query {
 ## Architecture
 
 ```
-index.ts          - Server setup and startup
-schema.ts         - GraphQL schema definition
-resolvers.ts      - GraphQL resolvers
-context.ts        - Request context with DataLoaders
-dataloaders.ts    - DataLoader implementations
-pagination.ts     - Pagination utilities
-mockData.ts       - Mock data (24 books, 10 authors)
+packages/books-srv/
+  ├── index.ts          - Server setup and startup
+  ├── schema.ts         - GraphQL schema definition
+  ├── resolvers.ts      - GraphQL resolvers
+  ├── context.ts        - Request context with DataLoaders
+  ├── dataloaders.ts    - DataLoader implementations
+  ├── pagination.ts     - Pagination utilities
+  └── mockData.ts       - Mock data (24 books, 10 authors)
+```
+
+---
+
+# books-cli - React Client
+
+A React application built with:
+- **React 18** with TypeScript
+- **Apollo Client** for GraphQL queries
+- **Tailwind CSS** for styling
+- **Bun** for bundling and development server
+
+## Features
+
+- Displays books in a responsive flex grid
+- Shows book details: title, ISBN, published year, and authors
+- Connects to the GraphQL server at `http://localhost:4000`
+
+## Running the Client
+
+From the monorepo root:
+```bash
+bun run start:cli
+```
+
+Or from the package directory:
+```bash
+cd packages/books-cli
+bun run dev
+```
+
+The client will start at `http://localhost:3000`
+
+## Architecture
+
+```
+packages/books-cli/
+  ├── index.ts              - Bun server setup
+  ├── index.html            - HTML entry point
+  ├── src/
+  │   ├── main.tsx          - React entry point
+  │   ├── App.tsx           - Main app component
+  │   ├── apollo-client.ts  - Apollo Client configuration
+  │   ├── index.css         - Tailwind CSS imports
+  │   └── components/
+  │       └── BooksGrid.tsx - Books grid component
+  ├── tailwind.config.js    - Tailwind configuration
+  └── postcss.config.js     - PostCSS configuration
 ```
 
 ## Key Features
