@@ -1,4 +1,4 @@
-# GraphQL Demo - Monorepo
+# GraphQL Demo - Books and Authors
 
 This monorepo contains:
 - **books-srv**: GraphQL server demonstrating solutions to common GraphQL problems
